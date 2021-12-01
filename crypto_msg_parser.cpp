@@ -148,8 +148,7 @@ static void from_json(const nlohmann::json& j, FundingRateMsg& msg) {
 }
 
 static inline bool is_null_terminated_view(std::string_view sv) noexcept {
-  const char* data_ptr = sv.data();
-  return !sv.empty() && data_ptr[strlen(data_ptr)] == '\0';
+  return !sv.empty() && sv.data()[sv.length()] == '\0';
 }
 
 std::string extract_symbol(std::string_view exchange, MarketType market_type,
@@ -166,7 +165,7 @@ std::string extract_symbol(std::string_view exchange, MarketType market_type,
   const char* msg_c_str = nullptr;
   std::string msg_string;
   if (is_null_terminated_view(msg)) {
-    msg_c_str = exchange.data();
+    msg_c_str = msg.data();
   } else {
     msg_string = std::move(std::string(msg));
     msg_c_str = exchange_string.c_str();
@@ -190,7 +189,7 @@ MessageType get_msg_type(std::string_view exchange, std::string_view msg) {
   const char* msg_c_str = nullptr;
   std::string msg_string;
   if (is_null_terminated_view(msg)) {
-    msg_c_str = exchange.data();
+    msg_c_str = msg.data();
   } else {
     msg_string = std::move(std::string(msg));
     msg_c_str = msg_string.c_str();
@@ -214,7 +213,7 @@ std::vector<TradeMsg> parse_trade(std::string_view exchange,
   const char* msg_c_str = nullptr;
   std::string msg_string;
   if (is_null_terminated_view(msg)) {
-    msg_c_str = exchange.data();
+    msg_c_str = msg.data();
   } else {
     msg_string = std::move(std::string(msg));
     msg_c_str = msg_string.c_str();
@@ -240,7 +239,7 @@ std::vector<OrderBookMsg> parse_l2(std::string_view exchange,
   const char* msg_c_str = nullptr;
   std::string msg_string;
   if (is_null_terminated_view(msg)) {
-    msg_c_str = exchange.data();
+    msg_c_str = msg.data();
   } else {
     msg_string = std::move(std::string(msg));
     msg_c_str = msg_string.c_str();
@@ -267,7 +266,7 @@ std::vector<FundingRateMsg> parse_funding_rate(std::string_view exchange,
   const char* msg_c_str = nullptr;
   std::string msg_string;
   if (is_null_terminated_view(msg)) {
-    msg_c_str = exchange.data();
+    msg_c_str = msg.data();
   } else {
     msg_string = std::move(std::string(msg));
     msg_c_str = msg_string.c_str();
