@@ -246,7 +246,7 @@ std::vector<OrderBookMsg> parse_l2(std::string_view exchange,
 
   const char* parsed_msg =
       parse_l2(exchange_c_str, market_type, msg_c_str, timestamp);
-  nlohmann::json j = parsed_msg;
+  nlohmann::json j = nlohmann::json::parse(parsed_msg);
   return j.get<std::vector<OrderBookMsg>>();
 }
 
@@ -273,6 +273,6 @@ std::vector<FundingRateMsg> parse_funding_rate(std::string_view exchange,
 
   const char* parsed_msg =
       parse_funding_rate(exchange_c_str, market_type, msg_c_str);
-  nlohmann::json j = parsed_msg;
+  nlohmann::json j = nlohmann::json::parse(parsed_msg);
   return j.get<std::vector<FundingRateMsg>>();
 }
