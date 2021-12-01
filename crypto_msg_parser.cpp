@@ -1,5 +1,6 @@
 #include "crypto_msg_parser.h"
 
+#include <cstring>
 #include <iostream>
 #include <nlohmann/json.hpp>
 
@@ -147,7 +148,8 @@ static void from_json(const nlohmann::json& j, FundingRateMsg& msg) {
 }
 
 static inline bool is_null_terminated_view(std::string_view sv) noexcept {
-  return !sv.empty() && sv.back() == '\0';
+  const char* data_ptr = sv.data();
+  return !sv.empty() && data_ptr[strlen(data_ptr)] == '\0';
 }
 
 std::string extract_symbol(std::string_view exchange, MarketType market_type,

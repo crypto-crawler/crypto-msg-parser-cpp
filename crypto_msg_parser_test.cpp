@@ -4,9 +4,8 @@
 
 #include <optional>
 
+// NOLINTNEXTLINE
 TEST(TradeMsgTest, ParseTrade) {
-  std::cout << "### line 6" << std::endl;
-  // NOLINTNEXTLINE
   const char raw_msg[] = R"json(
     {
     "stream":"btcusdt@aggTrade",
