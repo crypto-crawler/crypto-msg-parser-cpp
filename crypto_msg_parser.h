@@ -16,8 +16,8 @@ enum TradeSide {
   kSell,
 };
 
-/** Parent message. */
-struct Message {
+/** Base struct of all parsed message. */
+struct ParsedMessage {
   /** The exchange name, unique for each exchage */
   std::string exchange;
   /** Market type */
@@ -35,7 +35,7 @@ struct Message {
 };
 
 /** Realtime trade message. */
-struct TradeMsg : public Message {
+struct TradeMsg : public ParsedMessage {
   /** price */
   double price;
   /** Number of base coins */
@@ -63,7 +63,7 @@ struct Order {
 };
 
 /** Level2 orderbook message. */
-struct OrderBookMsg : public Message {
+struct OrderBookMsg : public ParsedMessage {
   /** sorted in ascending order by price if snapshot=true,otherwise not sorted
    */
   std::vector<Order> asks;
@@ -81,7 +81,7 @@ struct OrderBookMsg : public Message {
 };
 
 /** Funding rate message. */
-struct FundingRateMsg : public Message {
+struct FundingRateMsg : public ParsedMessage {
   /** Funding rate, which is calculated on data between [funding_time-16h,
    * funding_time-8h] */
   double funding_rate;

@@ -41,7 +41,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(MessageType, {
                                               {OpenInterest, "open_interest"},
                                           })
 
-static void to_json_shared(nlohmann::json& j, const Message& msg) {
+static void to_json_shared(nlohmann::json& j, const ParsedMessage& msg) {
   j["exchange"] = msg.exchange;
   j["market_type"] = msg.market_type;
   j["msg_type"] = msg.msg_type;
@@ -94,7 +94,7 @@ static void to_json(nlohmann::json& j, const FundingRateMsg& msg) {
   }
 }
 
-static void from_json_shared(const nlohmann::json& j, Message& msg) {
+static void from_json_shared(const nlohmann::json& j, ParsedMessage& msg) {
   j.at("exchange").get_to(msg.exchange);
   j.at("market_type").get_to(msg.market_type);
   j.at("msg_type").get_to(msg.msg_type);
