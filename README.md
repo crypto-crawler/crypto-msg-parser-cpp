@@ -5,9 +5,7 @@ C++ bindings for the crypto-msg-parser library
 ## Build
 
 ```bash
-mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release cmake ..
-make
+rm -rf build && mkdir build && cd build && cmake .. && make
 ```
 
 ## Unit Test

@@ -96,5 +96,5 @@ set_target_properties(
 
 enable_testing()
 add_executable(crypto_msg_parser_test crypto_msg_parser_test.cpp)
-target_link_libraries(crypto_msg_parser_test crypto_msg_parser gtest_main)
+target_link_libraries(crypto_msg_parser_test PRIVATE crypto_msg_parser gtest_main)
 gtest_discover_tests(crypto_msg_parser_test)
