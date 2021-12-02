@@ -79,6 +79,7 @@ add_library(crypto_msg_parser_ffi::crypto_msg_parser_ffi ALIAS crypto_msg_parser
 
 add_library(crypto_msg_parser STATIC crypto_msg_parser.cpp)
 target_link_libraries(crypto_msg_parser PRIVATE nlohmann_json::nlohmann_json crypto_msg_parser_ffi)
+set_target_properties(PROPERTIES PUBLIC_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/crypto_msg_parser.h")
 
 enable_testing()
 add_executable(
