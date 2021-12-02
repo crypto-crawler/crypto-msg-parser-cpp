@@ -6,6 +6,9 @@
 *.lo
 *.o
 *.obj
+.cache/
+Testing/
+build/
 
 # Precompiled Headers
 *.gch
